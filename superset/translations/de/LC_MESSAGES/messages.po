@@ -6115,7 +6115,7 @@ msgid "Export successful: %s"
 msgstr "Export erfolgreich: %s"
 
 msgid "Export to .CSV"
-msgstr "Export nach .CSV"
+msgstr "Export als .CSV"
 
 msgid "Export to .JSON"
 msgstr "Exportieren nach .JSON"
@@ -6124,28 +6124,28 @@ msgid "Export to CSV"
 msgstr "Export nach CSV"
 
 msgid "Export to Excel"
-msgstr "Exportieren nach Excel"
+msgstr "Export als Excel"
 
 msgid "Export to PDF"
-msgstr "In PDF exportieren"
+msgstr "Export als PDF"
 
 msgid "Export to Pivoted .CSV"
-msgstr "Export in das pivotierte .CSV"
+msgstr "Export als pivotiertes .CSV"
 
 msgid "Export to Pivoted Excel"
 msgstr "Export in pivotiertes Excel"
 
 msgid "Export to full .CSV"
-msgstr "Export in vollständiges . .CSV"
+msgstr "Vollständiger Export als .CSV"
 
 msgid "Export to full Excel"
 msgstr "Export in vollständiges Excel"
 
 msgid "Export to original .CSV"
-msgstr "Export in das ursprüngliche .CSV"
+msgstr "Export des Originals als .CSV"
 
 msgid "Export to pivoted .CSV"
-msgstr "Export in das pivotierte .CSV"
+msgstr "Export als pivotiertes .CSV"
 
 msgid "Expose database in SQL Lab"
 msgstr "Datenbank in SQL-Lab verfügbar machen"
