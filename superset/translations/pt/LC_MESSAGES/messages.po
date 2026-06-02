@@ -1547,6 +1547,9 @@ msgstr ""
 msgid "Allow users to select multiple values"
 msgstr ""
 
+msgid "Allow users to show/hide columns"
+msgstr "Permitir que os utilizadores mostrem/ocultem colunas"
+
 msgid "Allowed Domains (comma separated)"
 msgstr ""
 
@@ -12611,6 +12614,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr ""
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Mostra um seletor de colunas para que os utilizadores possam escolher quais colunas estão visíveis. As seleções não são mantidas após recarregar a página."
+
 #, fuzzy
 msgid "Show all columns"
 msgstr "Mostrar Coluna"
@@ -12742,6 +12748,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Mostrar Tabela"
+
+msgid "Show/hide columns"
+msgstr "Mostrar/ocultar colunas"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

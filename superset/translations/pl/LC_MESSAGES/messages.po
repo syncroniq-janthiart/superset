@@ -1648,6 +1648,9 @@ msgstr "Zezwól na zapytania do tej bazy danych w SQL Lab"
 msgid "Allow users to select multiple values"
 msgstr "Można wybrać wiele wartości"
 
+msgid "Allow users to show/hide columns"
+msgstr "Zezwalaj użytkownikom na pokazywanie/ukrywanie kolumn"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Dozwolone domeny (oddzielone przecinkami)"
 
@@ -13054,6 +13057,9 @@ msgstr ""
 "Pokaż oś Y na linii trendu. Wyświetli ręcznie ustawione wartości "
 "min/maks, jeśli zostały określone, lub wartości min/maks z danych."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Wyświetla selektor kolumn, dzięki któremu użytkownicy mogą wybrać, które kolumny są widoczne. Wybory nie są zachowywane po ponownym załadowaniu strony."
+
 #, fuzzy
 msgid "Show all columns"
 msgstr "Pokaż wszystkie kolumny"
@@ -13191,6 +13197,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Pokaż wartość"
+
+msgid "Show/hide columns"
+msgstr "Pokaż/ukryj kolumny"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

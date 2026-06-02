@@ -1578,6 +1578,9 @@ msgstr "Whakāetia tēnei pātengi raraunga kia pātaihia i SQL Lab"
 msgid "Allow users to select multiple values"
 msgstr "Ka taea te tīpako i ngā uara maha"
 
+msgid "Allow users to show/hide columns"
+msgstr ""
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Rohe Whakāetia (māmā wehea)"
 
@@ -12423,6 +12426,9 @@ msgstr ""
 "tautuhia ā-ringa mēnā kua tautuhia, i ngā uara iti/rahi i ngā raraunga "
 "rānei."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr ""
+
 msgid "Show all columns"
 msgstr "Whakaatu tīwae katoa"
 
@@ -12545,6 +12551,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Whakaatu Uara"
+
+msgid "Show/hide columns"
+msgstr ""
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

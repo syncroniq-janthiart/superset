@@ -2676,6 +2676,9 @@ msgstr "Salli tämän tietokannan kyseleminen SQL Lab:ssa"
 msgid "Allow users to select multiple values"
 msgstr "Salli käyttäjien valita useita arvoja"
 
+msgid "Allow users to show/hide columns"
+msgstr ""
+
 # Machine-translated via backfill_po.py (claude-sonnet-4-6) [refs: ar, ca, cs,
 # de, es, fa, fr, ja, lv, mi, nl, pl, pt_BR, ru, sk, sl, uk, zh, zh_TW]
 #, fuzzy
@@ -22197,6 +22200,9 @@ msgstr ""
 "Näytä Y-akseli pikaviivakaaviossa. Näyttää manuaalisesti asetetut min"
 "/maks-arvot, jos asetettu, muutoin tietojen min/maks-arvot."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr ""
+
 # Machine-translated via backfill_po.py (claude-sonnet-4-6) [refs: ar, ca, cs,
 # de, es, fa, fr, ja, lv, mi, nl, pt_BR, ru, sk, sl, uk, zh, zh_TW]
 #, fuzzy
@@ -22420,6 +22426,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Näytä arvo"
+
+msgid "Show/hide columns"
+msgstr ""
 
 # Machine-translated via backfill_po.py (claude-sonnet-4-6) [refs: ar, ca, cs,
 # de, es, fa, fr, ja, lv, mi, nl, pl, pt_BR, ru, sk, sl, uk, zh, zh_TW]
