@@ -540,6 +540,20 @@ const config: ControlPanelConfig = {
         ],
         [
           {
+            name: 'allow_column_selection',
+            config: {
+              type: 'CheckboxControl',
+              label: t('Allow users to show/hide columns'),
+              renderTrigger: true,
+              default: false,
+              description: t(
+                'Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload.',
+              ),
+            },
+          },
+        ],
+        [
+          {
             name: 'allow_render_html',
             config: {
               type: 'CheckboxControl',
