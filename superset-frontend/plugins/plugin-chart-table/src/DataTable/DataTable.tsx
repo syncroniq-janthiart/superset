@@ -82,6 +82,7 @@ export interface DataTableProps<D extends object> extends TableOptions<D> {
   onColumnOrderChange?: () => void;
   renderGroupingHeaders?: () => JSX.Element;
   renderTimeComparisonDropdown?: () => JSX.Element;
+  renderColumnSelector?: () => JSX.Element;
   handleSortByChange: (sortBy: SortByItem[]) => void;
   sortByFromParent: SortByItem[];
   manualSearch?: boolean;
@@ -126,6 +127,7 @@ export default typedMemo(function DataTable<D extends object>({
   onColumnOrderChange,
   renderGroupingHeaders,
   renderTimeComparisonDropdown,
+  renderColumnSelector,
   handleSortByChange,
   sortByFromParent = [],
   manualSearch = false,
@@ -172,7 +174,10 @@ export default typedMemo(function DataTable<D extends object>({
   const pageSizeRef = useRef([initialPageSize, resultsSize]);
   const hasPagination = initialPageSize > 0 && resultsSize > 0; // pageSize == 0 means no pagination
   const hasGlobalControl =
-    hasPagination || !!searchInput || renderTimeComparisonDropdown;
+    hasPagination ||
+    !!searchInput ||
+    !!renderTimeComparisonDropdown ||
+    !!renderColumnSelector;
   const initialState = {
     ...initialState_,
     // zero length means all pages, the `usePagination` plugin does not
@@ -576,6 +581,7 @@ export default typedMemo(function DataTable<D extends object>({
               />
             ) : null}
             <Flex wrap align="center" gap="middle">
+              {renderColumnSelector ? renderColumnSelector() : null}
               {serverPagination && searchInput && (
                 <Space size="small" className="search-select-container">
                   <span className="search-by-label">{t('Search by')}:</span>

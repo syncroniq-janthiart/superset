@@ -2458,6 +2458,216 @@ describe('Drill-to-Detail Temporal Range Logic', () => {
   });
 });
 
+describe('column selector integration', () => {
+  test('allowColumnSelection follows the control when on', () => {
+    expect(
+      transformProps({
+        ...testData.basic,
+        rawFormData: {
+          ...testData.basic.rawFormData,
+          allow_column_selection: true,
+        },
+      }).allowColumnSelection,
+    ).toBe(true);
+  });
+
+  test('allowColumnSelection is false when the control is off', () => {
+    expect(
+      transformProps({
+        ...testData.basic,
+        rawFormData: {
+          ...testData.basic.rawFormData,
+          allow_column_selection: false,
+        },
+      }).allowColumnSelection,
+    ).toBe(false);
+  });
+
+
+  // Use per-test slice id to circumvent selector cache
+  test('no picker is rendered when allowColumnSelection is false', () => {
+    render(
+      ProviderWrapper({
+        children: (
+          <TableChart
+            {...transformProps(testData.basic)}
+            slice_id={9101}
+            sticky={false}
+          />
+        ),
+      }),
+    );
+    expect(
+      screen.queryByRole('button', { name: 'Show/hide columns' }),
+    ).not.toBeInTheDocument();
+  });
+
+  test('unchecking a column removes it from the rendered table', async () => {
+    const { container } = render(
+      ProviderWrapper({
+        children: (
+          <TableChart
+            {...transformProps(testData.basic)}
+            slice_id={9102}
+            allowColumnSelection
+            sticky={false}
+          />
+        ),
+      }),
+    );
+    const initialHeaders = container.querySelectorAll('th').length;
+    expect(initialHeaders).toBeGreaterThan(1);
+
+    fireEvent.click(screen.getByRole('button', { name: 'Show/hide columns' }));
+    const checkboxes = await screen.findAllByRole('checkbox');
+    expect(checkboxes).toHaveLength(initialHeaders);
+    checkboxes.forEach(cb => expect(cb).toBeChecked());
+
+    fireEvent.click(checkboxes[0]);
+    await waitFor(() =>
+      expect(container.querySelectorAll('th')).toHaveLength(initialHeaders - 1),
+    );
+  });
+
+  test('selection persists across a remount with the same slice_id', async () => {
+    const props = { ...transformProps(testData.basic), slice_id: 9103 };
+    const first = render(
+      ProviderWrapper({
+        children: <TableChart {...props} allowColumnSelection sticky={false} />,
+      }),
+    );
+    const initialHeaders = first.container.querySelectorAll('th').length;
+    fireEvent.click(screen.getByRole('button', { name: 'Show/hide columns' }));
+    const checkboxes = await screen.findAllByRole('checkbox');
+    fireEvent.click(checkboxes[0]);
+    await waitFor(() =>
+      expect(first.container.querySelectorAll('th')).toHaveLength(
+        initialHeaders - 1,
+      ),
+    );
+    first.unmount();
+
+    const second = render(
+      ProviderWrapper({
+        children: <TableChart {...props} allowColumnSelection sticky={false} />,
+      }),
+    );
+    expect(second.container.querySelectorAll('th')).toHaveLength(
+      initialHeaders - 1,
+    );
+  });
+
+  test('hiding a column does not change the exported columns', async () => {
+    const setDataMask = jest.fn();
+    const { container } = render(
+      ProviderWrapper({
+        children: (
+          <TableChart
+            {...transformProps(testData.basic)}
+            slice_id={9104}
+            allowColumnSelection
+            setDataMask={setDataMask}
+            sticky={false}
+          />
+        ),
+      }),
+    );
+
+    const exportColumnCount = (): number | undefined => {
+      const masks = setDataMask.mock.calls.map(call => call[0]) as Array<{
+        ownState?: { clientView?: { columns?: unknown[] } };
+      }>;
+      const withColumns = masks
+        .map(mask => mask.ownState?.clientView?.columns)
+        .filter((columns): columns is unknown[] => Array.isArray(columns));
+      return withColumns.length
+        ? withColumns[withColumns.length - 1].length
+        : undefined;
+    };
+
+    await waitFor(() => expect(exportColumnCount()).toBeGreaterThan(1));
+    const exportedBefore = exportColumnCount();
+    const initialHeaders = container.querySelectorAll('th').length;
+
+    fireEvent.click(screen.getByRole('button', { name: 'Show/hide columns' }));
+    const checkboxes = await screen.findAllByRole('checkbox');
+    fireEvent.click(checkboxes[0]);
+    await waitFor(() =>
+      expect(container.querySelectorAll('th')).toHaveLength(initialHeaders - 1),
+    );
+
+    // Export reflects the author-visible columns and ignores the hidden column.
+    expect(exportColumnCount()).toBe(exportedBefore);
+  });
+
+  test('Deselect all keeps one (disabled) column; Select all restores them', async () => {
+    const { container } = render(
+      ProviderWrapper({
+        children: (
+          <TableChart
+            {...transformProps(testData.basic)}
+            slice_id={9105}
+            allowColumnSelection
+            sticky={false}
+          />
+        ),
+      }),
+    );
+    const total = container.querySelectorAll('th').length;
+    expect(total).toBeGreaterThan(1);
+    fireEvent.click(screen.getByRole('button', { name: 'Show/hide columns' }));
+    await screen.findAllByRole('checkbox');
+
+    fireEvent.click(screen.getByText('Deselect all'));
+    await waitFor(() =>
+      expect(container.querySelectorAll('th')).toHaveLength(1),
+    );
+    // The single remaining column cannot be hidden — its checkbox stays
+    // checked and disabled.
+    const checked = (await screen.findAllByRole('checkbox')).filter(
+      cb => (cb as HTMLInputElement).checked,
+    );
+    expect(checked).toHaveLength(1);
+    expect(checked[0]).toBeDisabled();
+
+    fireEvent.click(screen.getByText('Select all'));
+    await waitFor(() =>
+      expect(container.querySelectorAll('th')).toHaveLength(total),
+    );
+  });
+});
+
+describe('DataTable renderColumnSelector', () => {
+  test('renders the column selector even without search or pagination', () => {
+    type DataRow = { a: number };
+    const columns: Column<DataRow>[] = [
+      { id: 'a', accessor: 'a', Header: 'A' },
+    ];
+    const data: DataRow[] = [{ a: 1 }];
+    render(
+      ProviderWrapper({
+        children: (
+          <DataTable<DataRow>
+            columns={columns}
+            data={data}
+            rowCount={1}
+            pageSize={0}
+            serverPaginationData={{}}
+            searchInput={false}
+            onServerPaginationChange={() => {}}
+            handleSortByChange={() => {}}
+            sortByFromParent={[]}
+            onSearchColChange={() => {}}
+            searchOptions={[]}
+            renderColumnSelector={() => <button type="button">picker</button>}
+          />
+        ),
+      }),
+    );
+    expect(screen.getByText('picker')).toBeInTheDocument();
+  });
+});
+
 // Numeric values with String dataType (e.g. backend mis-reports type for computed columns)
 // get 'alphanumeric' sort, which treats raw numbers as non-strings and produces unstable order.
 // They should sort numerically regardless of display format.

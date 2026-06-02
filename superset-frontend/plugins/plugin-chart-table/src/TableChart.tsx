@@ -95,6 +95,7 @@ import DataTable, {
   SizeOption,
 } from './DataTable';
 import Styles from './Styles';
+import ColumnSelectorDropdown from './DataTable/components/ColumnSelectorDropdown';
 import { formatColumnValue } from './utils/formatValue';
 import { PAGE_SIZE_OPTIONS, SERVER_PAGE_SIZE_OPTIONS } from './consts';
 import { updateTableOwnState } from './DataTable/utils/externalAPIs';
@@ -113,6 +114,11 @@ const ACTION_KEYS = {
   spacebar: 'Spacebar',
   space: ' ',
 };
+
+// Per-slice cache of end-user hidden column keys. Survives chart unmount/remount
+// within a page session (e.g. dashboard tab switches) but resets on a full page
+// reload, mirroring the sliceCache pattern in transformProps.ts.
+const columnSelectionCache = new Map<number, string[]>();
 
 /**
  * Return sortType based on data type
@@ -398,6 +404,7 @@ export default function TableChart<D extends DataRecord = DataRecord>(
     sticky = true, // whether to use sticky header
     columnColorFormatters,
     allowRearrangeColumns = false,
+    allowColumnSelection = false,
     allowRenderHtml = true,
     onContextMenu,
     emitCrossFilters,
@@ -409,6 +416,18 @@ export default function TableChart<D extends DataRecord = DataRecord>(
     slice_id,
     columnLabelToNameMap = {},
   } = props;
+
+  const [hiddenColumns, setHiddenColumns] = useState<Set<string>>(
+    () => new Set(columnSelectionCache.get(slice_id) ?? []),
+  );
+
+  const handleHiddenColumnsChange = useCallback(
+    (next: Set<string>) => {
+      columnSelectionCache.set(slice_id, [...next]);
+      setHiddenColumns(next);
+    },
+    [slice_id],
+  );
 
   const comparisonColumns = useMemo(
     () => [
@@ -843,12 +862,27 @@ export default function TableChart<D extends DataRecord = DataRecord>(
     );
   };
 
-  // Compute visible columns before groupHeaderColumns to ensure index consistency.
-  // This filters out columns with config.visible === false.
-  const visibleColumnsMeta = useMemo(
+  // Columns the chart author has chosen to show (static config.visible).
+  // These are the options offered by the end-user column selector.
+  const selectableColumnsMeta = useMemo(
     () => filteredColumnsMeta.filter(col => col.config?.visible !== false),
     [filteredColumnsMeta],
   );
+
+  // Apply the end-user column selection on top of the author-visible set.
+  // Used for both the rendered columns and groupHeaderColumns so their indices
+  // stay aligned.
+  const visibleColumnsMeta = useMemo(() => {
+    if (!allowColumnSelection) {
+      return selectableColumnsMeta;
+    }
+    const visible = selectableColumnsMeta.filter(
+      col => !hiddenColumns.has(col.key),
+    );
+    // Never hide every column (mirrors the >= 1 rule the picker enforces). This
+    // also guards against stale cached selections after the query columns change.
+    return visible.length > 0 ? visible : selectableColumnsMeta;
+  }, [selectableColumnsMeta, allowColumnSelection, hiddenColumns]);
 
   // Use visibleColumnsMeta for groupHeaderColumns to ensure indices match the actual
   // table columns. This fixes header misalignment when columns are filtered.
@@ -1562,13 +1596,15 @@ export default function TableChart<D extends DataRecord = DataRecord>(
   // collect client-side filtered rows for export & push snapshot to ownState (guarded)
   const [clientViewRows, setClientViewRows] = useState<DataRecord[]>([]);
 
+  // Export reflects the author-visible columns and is intentionally unaffected by
+  // the end-user column selector (hiding a column is presentational only).
   const exportColumns = useMemo(
     () =>
-      visibleColumnsMeta.map(col => ({
+      selectableColumnsMeta.map(col => ({
         key: col.key,
         label: col.config?.customColumnName || col.originalLabel || col.key,
       })),
-    [visibleColumnsMeta],
+    [selectableColumnsMeta],
   );
 
   // Use a ref to store previous clientViewRows and exportColumns for robust change detection
@@ -1603,6 +1639,22 @@ export default function TableChart<D extends DataRecord = DataRecord>(
     serverPaginationData,
   ]);
 
+  const renderColumnSelector = useCallback(
+    () => (
+      <ColumnSelectorDropdown
+        // Mirror the rendered header label (config.customColumnName || label)
+        // so picker entries match what users see in the table.
+        columns={selectableColumnsMeta.map(col => ({
+          key: col.key,
+          label: col.config?.customColumnName || col.label,
+        }))}
+        hiddenColumns={hiddenColumns}
+        onChange={handleHiddenColumnsChange}
+      />
+    ),
+    [selectableColumnsMeta, hiddenColumns, handleHiddenColumnsChange],
+  );
+
   return (
     <Styles>
       <DataTable<D>
@@ -1633,6 +1685,11 @@ export default function TableChart<D extends DataRecord = DataRecord>(
         }
         renderTimeComparisonDropdown={
           isUsingTimeComparison ? renderTimeComparisonDropdown : undefined
+        }
+        renderColumnSelector={
+          allowColumnSelection && selectableColumnsMeta.length > 1
+            ? renderColumnSelector
+            : undefined
         }
         handleSortByChange={handleSortByChange}
         onSearchColChange={handleChangeSearchCol}
