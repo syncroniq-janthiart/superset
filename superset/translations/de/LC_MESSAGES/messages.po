@@ -6093,40 +6093,39 @@ msgstr "Bericht fehlgeschlagen"
 msgid "Export screenshot (jpeg)"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Export successful: %s"
-msgstr "Export in vollständiges . .CSV"
+msgstr "Export in vollständiges .CSV"
 
 msgid "Export to .CSV"
-msgstr "Export nach .CSV"
+msgstr "Export als .CSV"
 
 msgid "Export to .JSON"
-msgstr "Exportieren nach . JSON"
+msgstr "Export als .JSON"
 
 msgid "Export to Excel"
-msgstr "Exportieren nach Excel"
+msgstr "Export als Excel"
 
 msgid "Export to PDF"
-msgstr "In PDF exportieren"
+msgstr "Export als PDF"
 
 msgid "Export to Pivoted .CSV"
-msgstr "Export in das pivotierte .CSV"
+msgstr "Export als pivotiertes .CSV"
 
-#, fuzzy
 msgid "Export to Pivoted Excel"
-msgstr "Export in das pivotierte .CSV"
+msgstr "Export als pivotiertes Excel"
 
 msgid "Export to full .CSV"
-msgstr "Export in vollständiges . .CSV"
+msgstr "Vollständiger Export als .CSV"
 
 msgid "Export to full Excel"
-msgstr "Exportieren als Excel"
+msgstr "Vollständiger Export als Excel"
 
 msgid "Export to original .CSV"
-msgstr "Export in das ursprüngliche .CSV"
+msgstr "Export des Originals als .CSV"
 
 msgid "Export to pivoted .CSV"
-msgstr "Export in das pivotierte .CSV"
+msgstr "Export als pivotiertes .CSV"
 
 msgid "Expose database in SQL Lab"
 msgstr "Datenbank in SQL Lab verfügbar machen"
