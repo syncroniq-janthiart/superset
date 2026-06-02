@@ -54,6 +54,15 @@ test('should render the "Clear all" button as disabled', () => {
   expect(clearBtn.parentElement).toBeDisabled();
 });
 
+test('should enable the "Clear all" button when only cross-filters are active', () => {
+  const mockedProps = createProps();
+  render(<ActionButtons {...mockedProps} hasCrossFilters />, {
+    useRedux: true,
+  });
+  const clearBtn = screen.getByText('Clear all');
+  expect(clearBtn.parentElement).toBeEnabled();
+});
+
 test('should render the "Apply" button as disabled', () => {
   const mockedProps = createProps();
   const applyDisabledProps = {

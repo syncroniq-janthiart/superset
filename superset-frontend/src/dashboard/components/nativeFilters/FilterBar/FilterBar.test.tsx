@@ -849,6 +849,145 @@ test('FilterBar Clear All only clears in-scope filters, not out-of-scope ones', 
   updateDataMaskSpy.mockRestore();
 });
 
+test('Clear All on a cross-filter-only dashboard enables both buttons and clears on Apply', async () => {
+  const emitterChartId = 18;
+  const updateDataMaskSpy = jest.spyOn(dataMaskActions, 'updateDataMask');
+  const state = {
+    ...stateWithoutNativeFilters,
+    dashboardInfo: {
+      id: 1,
+      dash_edit_perm: true,
+      filterBarOrientation: FilterBarOrientation.Vertical,
+      metadata: {
+        native_filter_configuration: [],
+        chart_configuration: {},
+      },
+    },
+    dashboardState: {
+      ...stateWithoutNativeFilters.dashboardState,
+      activeTabs: ['ROOT_ID'],
+      sliceIds: [emitterChartId],
+    },
+    // Cross-filters live in dataMask keyed by the emitter chart id.
+    dataMask: {
+      [emitterChartId]: {
+        id: emitterChartId,
+        filterState: { value: ['USA'] },
+        extraFormData: {
+          filters: [{ col: 'country', op: 'IN', val: ['USA'] }],
+        },
+      },
+    },
+    nativeFilters: {
+      filters: {},
+      filtersState: {},
+    },
+  };
+
+  const props = createOpenedBarProps();
+  renderFilterBar(props, state);
+  await act(async () => {
+    jest.advanceTimersByTime(300);
+  });
+
+  // "Clear all" is enabled even though there are no native filters.
+  const clearBtn = screen.getByTestId(getTestId('clear-button'));
+  expect(clearBtn).not.toBeDisabled();
+  await act(async () => {
+    userEvent.click(clearBtn);
+  });
+
+  // Staging only — no dispatch on "Clear all".
+  expect(updateDataMaskSpy).not.toHaveBeenCalled();
+
+  // "Apply" becomes enabled by the staged cross-filter clear, then flushes it.
+  const applyBtn = screen.getByTestId(getTestId('apply-button'));
+  expect(applyBtn).not.toBeDisabled();
+  await act(async () => {
+    userEvent.click(applyBtn);
+  });
+  expect(updateDataMaskSpy).toHaveBeenCalledTimes(1);
+  expect(updateDataMaskSpy).toHaveBeenCalledWith(emitterChartId, {
+    extraFormData: { filters: [] },
+    filterState: { value: null, selectedValues: null },
+  });
+  updateDataMaskSpy.mockRestore();
+});
+
+test('Clear All + Apply clears native and cross-filters together', async () => {
+  const filterId = 'NATIVE_FILTER-with-cross';
+  const emitterChartId = 18;
+  const updateDataMaskSpy = jest.spyOn(dataMaskActions, 'updateDataMask');
+  const selectFilter = createFilter({
+    id: filterId,
+    name: 'Region',
+    filterType: 'filter_select',
+    targets: [{ datasetId: 7, column: { name: 'region' } }],
+    chartsInScope: [emitterChartId],
+  });
+  const state = {
+    ...stateWithoutNativeFilters,
+    dashboardInfo: {
+      id: 1,
+      dash_edit_perm: true,
+      filterBarOrientation: FilterBarOrientation.Vertical,
+      metadata: {
+        native_filter_configuration: [selectFilter],
+        chart_configuration: {},
+      },
+    },
+    dashboardState: {
+      ...stateWithoutNativeFilters.dashboardState,
+      activeTabs: ['ROOT_ID'],
+      sliceIds: [emitterChartId],
+    },
+    dataMask: {
+      [filterId]: createDataMask(filterId, ['East'], {
+        filters: [{ col: 'region', op: 'IN', val: ['East'] }],
+      }),
+      [emitterChartId]: {
+        id: emitterChartId,
+        filterState: { value: ['USA'] },
+        extraFormData: {
+          filters: [{ col: 'country', op: 'IN', val: ['USA'] }],
+        },
+      },
+    },
+    nativeFilters: {
+      filters: { [filterId]: selectFilter },
+      filtersState: {},
+    },
+  };
+
+  const props = createOpenedBarProps();
+  renderFilterBar(props, state);
+  await act(async () => {
+    jest.advanceTimersByTime(300);
+  });
+
+  await act(async () => {
+    userEvent.click(screen.getByTestId(getTestId('clear-button')));
+  });
+  expect(updateDataMaskSpy).not.toHaveBeenCalled();
+
+  await act(async () => {
+    userEvent.click(screen.getByTestId(getTestId('apply-button')));
+  });
+
+  // Native filter cleared (staged value) ...
+  expect(updateDataMaskSpy).toHaveBeenCalledWith(filterId, {
+    id: filterId,
+    filterState: { value: undefined, validateStatus: undefined },
+    extraFormData: {},
+  });
+  // ... and the cross-filter cleared in the same Apply.
+  expect(updateDataMaskSpy).toHaveBeenCalledWith(emitterChartId, {
+    extraFormData: { filters: [] },
+    filterState: { value: null, selectedValues: null },
+  });
+  updateDataMaskSpy.mockRestore();
+});
+
 test('Clear All on a required filter disables Apply via validateStatus', async () => {
   const filterId = 'NATIVE_FILTER-required-clear';
   const updateDataMaskSpy = jest.spyOn(dataMaskActions, 'updateDataMask');

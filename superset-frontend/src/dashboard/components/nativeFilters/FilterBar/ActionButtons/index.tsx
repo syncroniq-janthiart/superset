@@ -40,6 +40,7 @@ interface ActionButtonsProps {
   isApplyDisabled: boolean;
   filterBarOrientation?: FilterBarOrientation;
   hasOutOfScopeRequiredFilters?: boolean;
+  hasCrossFilters?: boolean;
 }
 
 const ButtonsContainer = styled.div<{ isVertical: boolean }>`
@@ -105,6 +106,7 @@ const ActionButtons = ({
   filterBarOrientation = FilterBarOrientation.Vertical,
   chartCustomizationItems,
   hasOutOfScopeRequiredFilters = false,
+  hasCrossFilters = false,
 }: ActionButtonsProps) => {
   const isVertical = filterBarOrientation === FilterBarOrientation.Vertical;
 
@@ -133,8 +135,18 @@ const ActionButtons = ({
       return hasValue || hasGroupBy;
     });
 
-    return hasSelectedChanges || hasAppliedChanges || hasChartCustomizations;
-  }, [dataMaskSelected, dataMaskApplied, chartCustomizationItems]);
+    return (
+      hasSelectedChanges ||
+      hasAppliedChanges ||
+      hasChartCustomizations ||
+      hasCrossFilters
+    );
+  }, [
+    dataMaskSelected,
+    dataMaskApplied,
+    chartCustomizationItems,
+    hasCrossFilters,
+  ]);
 
   return (
     <ButtonsContainer
