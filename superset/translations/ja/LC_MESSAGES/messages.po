@@ -1478,6 +1478,9 @@ msgstr "SQL Lab でのクエリ実行を許可"
 msgid "Allow users to select multiple values"
 msgstr "ユーザーによる複数値の選択を許可"
 
+msgid "Allow users to show/hide columns"
+msgstr "ユーザーによる列の表示/非表示を許可する"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "許可されたドメイン(カンマ区切り)"
 
@@ -2104,6 +2107,10 @@ msgstr "アシスト"
 
 msgid "Asynchronous query execution"
 msgstr "非同期クエリ実行"
+
+#, fuzzy
+msgid "At least one column must remain visible"
+msgstr "少なくとも1つの列は表示されたままにする必要があります"
 
 msgid "Attribution"
 msgstr "属性"
@@ -11544,6 +11551,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr "スパークラインにY軸を表示します。手動設定されている場合はその最小/最大値を、そうでない場合はデータの最小/最大値を表示します。"
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "閲覧者が表示する列を選択できる列セレクターを表示します。選択内容はページの再読み込み後には保持されません。"
+
 msgid "Show all columns"
 msgstr "すべての列を表示"
 
@@ -11656,6 +11666,9 @@ msgstr "選択したメトリックの集計合計を表示します。この結
 
 msgid "Show value"
 msgstr "値を表示"
+
+msgid "Show/hide columns"
+msgstr "列の表示/非表示"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

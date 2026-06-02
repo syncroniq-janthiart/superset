@@ -1602,6 +1602,9 @@ msgstr "Povolit dotazovanie na tuto databázy v SQL Labu"
 msgid "Allow users to select multiple values"
 msgstr "Umožniť používateľom výber viac hodnôt"
 
+msgid "Allow users to show/hide columns"
+msgstr ""
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Povolené domény (oddelené čiarkou)"
 
@@ -2284,6 +2287,9 @@ msgstr "Asistent"
 
 msgid "Asynchronous query execution"
 msgstr "Asynchrónne vykonávanie dotazov"
+
+msgid "At least one column must remain visible"
+msgstr ""
 
 msgid "Attribution"
 msgstr "Atribuce"
@@ -12463,6 +12469,9 @@ msgstr ""
 "Zobraziť osu Y na minigrafu. Zobrazí ručne nastavené min/max, pokiaľ je "
 "nastavené, jinak min/max hodnoty v datech."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr ""
+
 msgid "Show all columns"
 msgstr "Zobraziť všetky stĺpce"
 
@@ -12584,6 +12593,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Zobraziť hodnotu"
+
+msgid "Show/hide columns"
+msgstr ""
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

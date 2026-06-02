@@ -1453,6 +1453,9 @@ msgstr ""
 msgid "Allow users to select multiple values"
 msgstr "Birden fazla değer seçilebilir"
 
+msgid "Allow users to show/hide columns"
+msgstr "Kullanıcıların sütunları göstermesine/gizlemesine izin ver"
+
 msgid "Allowed Domains (comma separated)"
 msgstr ""
 
@@ -2095,6 +2098,10 @@ msgstr ""
 
 msgid "Asynchronous query execution"
 msgstr ""
+
+#, fuzzy
+msgid "At least one column must remain visible"
+msgstr "En az bir sütun görünür kalmalıdır"
 
 msgid "Attribution"
 msgstr ""
@@ -11808,6 +11815,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr ""
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Kullanıcıların hangi sütunların görüneceğini seçebilmesi için bir sütun seçici gösterir. Seçimler sayfa yeniden yüklendikten sonra korunmaz."
+
 msgid "Show all columns"
 msgstr ""
 
@@ -11923,6 +11933,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Toplamı göster"
+
+msgid "Show/hide columns"
+msgstr "Sütunları göster/gizle"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

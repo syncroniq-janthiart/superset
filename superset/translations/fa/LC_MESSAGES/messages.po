@@ -1572,6 +1572,9 @@ msgstr "اجازه دهید این پایگاه داده در آزمایشگاه
 msgid "Allow users to select multiple values"
 msgstr "می‌توانید چندین مقدار را انتخاب کنید"
 
+msgid "Allow users to show/hide columns"
+msgstr ""
+
 msgid "Allowed Domains (comma separated)"
 msgstr "دامنه‌های مجاز (با ممیز ویرگول جدا شده)"
 
@@ -2237,6 +2240,9 @@ msgid "Asynchronous query execution"
 msgstr "اجرای کوئری به صورت ناهمزمان"
 
 #, fuzzy
+msgid "At least one column must remain visible"
+msgstr ""
+
 msgid "Attribution"
 msgstr "توزیع"
 
@@ -12442,6 +12448,9 @@ msgstr ""
 " تنظیم شده باشد، این مقادیر نمایش داده می‌شوند و در غیر این صورت از "
 "مقادیر حداقل/حداکثر داده‌ها استفاده خواهد شد."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr ""
+
 msgid "Show all columns"
 msgstr "همه ستون‌ها را نمایش بدهید"
 
@@ -12566,6 +12575,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "نمایش مقدار"
+
+msgid "Show/hide columns"
+msgstr ""
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

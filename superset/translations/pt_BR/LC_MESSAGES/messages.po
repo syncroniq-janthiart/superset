@@ -1641,6 +1641,9 @@ msgstr "Permitir que o banco de dados seja consultado no SQL Lab"
 msgid "Allow users to select multiple values"
 msgstr "Pode selecionar vários valores"
 
+msgid "Allow users to show/hide columns"
+msgstr "Permitir que os usuários exibam/ocultem colunas"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Domínios permitidos (separados por vírgula)"
 
@@ -2349,6 +2352,10 @@ msgid "Asynchronous query execution"
 msgstr "Execução de consulta assíncrona"
 
 #, fuzzy
+#, fuzzy
+msgid "At least one column must remain visible"
+msgstr "Pelo menos uma coluna deve permanecer visível"
+
 msgid "Attribution"
 msgstr "Distribuição"
 
@@ -12821,6 +12828,9 @@ msgstr ""
 "manualmente, se definidos, ou os valores mínimo/máximo nos dados, caso "
 "contrário."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Exibe um seletor de colunas para que os usuários possam escolher quais colunas ficam visíveis. As seleções não são mantidas após recarregar a página."
+
 msgid "Show all columns"
 msgstr "Mostrar todas as colunas"
 
@@ -12950,6 +12960,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Mostrar valor"
+
+msgid "Show/hide columns"
+msgstr "Exibir/ocultar colunas"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

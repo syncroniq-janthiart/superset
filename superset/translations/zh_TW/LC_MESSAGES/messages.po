@@ -1524,6 +1524,9 @@ msgstr "允許在 SQL 工具箱中查詢此資料庫"
 msgid "Allow users to select multiple values"
 msgstr "允許選擇多個值"
 
+msgid "Allow users to show/hide columns"
+msgstr "允許使用者顯示/隱藏欄位"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "允許的域名（逗號分隔）"
 
@@ -2194,6 +2197,10 @@ msgid "Asynchronous query execution"
 msgstr "異步執行查詢"
 
 #, fuzzy
+#, fuzzy
+msgid "At least one column must remain visible"
+msgstr "至少一個欄位必須保持可見"
+
 msgid "Attribution"
 msgstr "分布"
 
@@ -12538,6 +12545,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr "在迷你圖上顯示Y軸。如果設定了手動設定的最小/最大值，则顯示之，否則顯示數據中的最小/最大值。"
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "顯示欄位選擇器，讓檢視者選擇要顯示的欄位。所選內容在頁面重新載入後不會保留。"
+
 msgid "Show all columns"
 msgstr "顯示所有列"
 
@@ -12667,6 +12677,9 @@ msgstr "顯示所選指標的總聚合。注意行限制並不應用於结果"
 #, fuzzy
 msgid "Show value"
 msgstr "顯示值"
+
+msgid "Show/hide columns"
+msgstr "顯示/隱藏欄位"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

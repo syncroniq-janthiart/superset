@@ -1614,6 +1614,9 @@ msgstr "السماح بالاستعلام عن قاعدة البيانات هذ�
 msgid "Allow users to select multiple values"
 msgstr "يمكن تحديد قيم متعددة"
 
+msgid "Allow users to show/hide columns"
+msgstr ""
+
 msgid "Allowed Domains (comma separated)"
 msgstr "المجالات المسموح بها (مفصولة بفواصل)"
 
@@ -2274,6 +2277,9 @@ msgid "Asynchronous query execution"
 msgstr "تنفيذ استعلام غير متزامن"
 
 #, fuzzy
+msgid "At least one column must remain visible"
+msgstr ""
+
 msgid "Attribution"
 msgstr "التوزيع"
 
@@ -12578,6 +12584,9 @@ msgstr ""
 "أظهر المحور Y على خط الشرارة. سيعرض الحد الأدنى/الحد الأقصى المعين يدويًا"
 " في حالة تعيين قيم الحد الأدنى/الحد الأقصى في البيانات بخلاف ذلك."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr ""
+
 msgid "Show all columns"
 msgstr "عرض جميع الأعمدة"
 
@@ -12703,6 +12712,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "عرض القيمة"
+
+msgid "Show/hide columns"
+msgstr ""
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

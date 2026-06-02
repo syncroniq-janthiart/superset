@@ -1617,6 +1617,9 @@ msgstr "Abfragen dieser Datenbank in SQL Lab zulassen"
 msgid "Allow users to select multiple values"
 msgstr "Mehrere Werte können ausgewählt werden"
 
+msgid "Allow users to show/hide columns"
+msgstr "Benutzern das Ein-/Ausblenden von Spalten erlauben"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Zulässige Domänen (durch Kommas getrennt)"
 
@@ -2305,7 +2308,9 @@ msgstr "Assist"
 msgid "Asynchronous query execution"
 msgstr "Asynchrone Abfrageausführung"
 
-#, fuzzy
+msgid "At least one column must remain visible"
+msgstr "Mindestens eine Spalte muss sichtbar bleiben"
+
 msgid "Attribution"
 msgstr "Verteilung"
 
@@ -11923,9 +11928,8 @@ msgstr "Schema auswählen oder tippen, um Schemas zu suchen"
 msgid "Select ..."
 msgstr "Auswählen …"
 
-#, fuzzy
 msgid "Select All"
-msgstr "Alle abwählen"
+msgstr "Alle Auswählen"
 
 #, fuzzy
 msgid "Select Database and Schema"
@@ -12044,9 +12048,8 @@ msgstr "Visualisierungstyp wählen"
 msgid "Select aggregate options"
 msgstr "Aggregierungsoptionen auswählen"
 
-#, fuzzy
 msgid "Select all"
-msgstr "Alle abwählen"
+msgstr "Alle auswählen"
 
 msgid "Select all data"
 msgstr "Alle Daten auswählen"
@@ -12697,6 +12700,9 @@ msgstr ""
 "Y-Achse auf der Sparkline anzeigen. Zeigt die manuell eingestellten Min"
 "/Max-Werte an, falls festgelegt, andernfalls Min/Max-Werte der Daten."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Zeigt eine Spaltenauswahl an, mit der Betrachter wählen können, welche Spalten sichtbar sind. Die Auswahl bleibt nach dem Neuladen der Seite nicht erhalten."
+
 msgid "Show all columns"
 msgstr "Alle Spalten anzeigen"
 
@@ -12821,6 +12827,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Wert anzeigen"
+
+msgid "Show/hide columns"
+msgstr "Spalten ein-/ausblenden"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

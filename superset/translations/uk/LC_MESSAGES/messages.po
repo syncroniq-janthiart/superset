@@ -1592,6 +1592,9 @@ msgstr "Дозволити надсилати запити в цю базу да
 msgid "Allow users to select multiple values"
 msgstr "Дозволити користувачу вибирати кілька значень"
 
+msgid "Allow users to show/hide columns"
+msgstr "Дозволити користувачам показувати/приховувати стовпці"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Дозволені домени (розділені комою)"
 
@@ -2251,6 +2254,10 @@ msgstr "Допоміжні дані"
 
 msgid "Asynchronous query execution"
 msgstr "Асинхронне виконання запитів"
+
+#, fuzzy
+msgid "At least one column must remain visible"
+msgstr "Принаймні один стовпець має залишатися видимим"
 
 msgid "Attribution"
 msgstr "Розподіл"
@@ -12136,6 +12143,9 @@ msgstr ""
 "мінімальні/максимальні значення; інакше — мінімум/максимум із самих "
 "даних."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Показує засіб вибору стовпців, що дозволяє користувачам вибирати, які стовпці відображаються. Вибір не зберігається після перезавантаження сторінки."
+
 msgid "Show all columns"
 msgstr "Показати всі стовпці"
 
@@ -12253,6 +12263,9 @@ msgstr ""
 
 msgid "Show value"
 msgstr "Показати значення"
+
+msgid "Show/hide columns"
+msgstr "Показати/приховати стовпці"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

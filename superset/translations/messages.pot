@@ -1433,6 +1433,9 @@ msgstr ""
 msgid "Allow users to select multiple values"
 msgstr ""
 
+msgid "Allow users to show/hide columns"
+msgstr ""
+
 msgid "Allowed Domains (comma separated)"
 msgstr ""
 
@@ -2044,6 +2047,9 @@ msgid "Assist"
 msgstr ""
 
 msgid "Asynchronous query execution"
+msgstr ""
+
+msgid "At least one column must remain visible"
 msgstr ""
 
 msgid "Attribution"
@@ -11308,6 +11314,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr ""
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr ""
+
 msgid "Show all columns"
 msgstr ""
 
@@ -11418,6 +11427,9 @@ msgid ""
 msgstr ""
 
 msgid "Show value"
+msgstr ""
+
+msgid "Show/hide columns"
 msgstr ""
 
 msgid ""
