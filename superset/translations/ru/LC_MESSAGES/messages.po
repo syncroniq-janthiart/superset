@@ -1389,6 +1389,9 @@ msgstr "Разрешить запросы к этой базе данных в S
 msgid "Allow users to select multiple values"
 msgstr "Разрешить пользователям выбирать несколько значений"
 
+msgid "Allow users to show/hide columns"
+msgstr "Разрешить пользователям показывать/скрывать столбцы"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Разрешенные домены (разделить запятыми)"
 
@@ -11191,6 +11194,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr "Показывать ось Y на спарклайне."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Показывает средство выбора столбцов, позволяющее пользователям выбирать, какие столбцы отображаются. Выбор не сохраняется после перезагрузки страницы."
+
 msgid "Show all columns"
 msgstr "Показать все столбцы"
 
@@ -11303,6 +11309,9 @@ msgstr ""
 
 msgid "Show value"
 msgstr "Показать значение"
+
+msgid "Show/hide columns"
+msgstr "Показать/скрыть столбцы"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

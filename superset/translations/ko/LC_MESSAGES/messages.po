@@ -1334,6 +1334,9 @@ msgstr ""
 msgid "Allow users to select multiple values"
 msgstr ""
 
+msgid "Allow users to show/hide columns"
+msgstr "사용자가 열을 표시하거나 숨길 수 있도록 허용"
+
 msgid "Allowed Domains (comma separated)"
 msgstr ""
 
@@ -11402,6 +11405,9 @@ msgid ""
 "set or min/max values in the data otherwise."
 msgstr ""
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "사용자가 표시할 열을 선택할 수 있는 열 선택기를 표시합니다. 선택 항목은 페이지를 새로 고치면 유지되지 않습니다."
+
 #, fuzzy
 msgid "Show all columns"
 msgstr "컬럼 보기"
@@ -11530,6 +11536,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "테이블 보기"
+
+msgid "Show/hide columns"
+msgstr "열 표시/숨기기"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

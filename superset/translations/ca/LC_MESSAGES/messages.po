@@ -1423,6 +1423,9 @@ msgstr "Permetre que aquesta base de dades sigui consultada a SQL Lab"
 msgid "Allow users to select multiple values"
 msgstr "Pot seleccionar múltiples valors"
 
+msgid "Allow users to show/hide columns"
+msgstr "Permet als usuaris mostrar o amagar columnes"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Dominis Permesos (separats per comes)"
 
@@ -11540,6 +11543,9 @@ msgstr ""
 "Mostrar eix Y a la línia de tendència. Mostrarà el min/max establert "
 "manualment si està establert o els valors min/max de les dades altrament."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Mostra un selector de columnes perquè els usuaris puguin triar quines columnes es veuen. Les seleccions no es conserven després de tornar a carregar la pàgina."
+
 msgid "Show all columns"
 msgstr "Mostrar totes les columnes"
 
@@ -11658,6 +11664,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Mostrar Valor"
+
+msgid "Show/hide columns"
+msgstr "Mostra o amaga columnes"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "

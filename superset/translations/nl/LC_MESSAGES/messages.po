@@ -1393,6 +1393,9 @@ msgstr "Sta toe dat deze database wordt opgevraagd in SQL Lab"
 msgid "Allow users to select multiple values"
 msgstr "Kan meerdere waarden selecteren"
 
+msgid "Allow users to show/hide columns"
+msgstr "Gebruikers toestaan kolommen te tonen/verbergen"
+
 msgid "Allowed Domains (comma separated)"
 msgstr "Toegestane domeinen (komma gescheiden)"
 
@@ -11676,6 +11679,9 @@ msgstr ""
 "Laat de Y-as zien op de sparkline. Dit zal de handmatige instelling "
 "min/max waardes weergeven anders of min/max waarden in de gegevens."
 
+msgid "Show a column picker so viewers can choose which columns are visible. Selections do not persist after a page reload."
+msgstr "Toont een kolomkiezer waarmee gebruikers kunnen kiezen welke kolommen zichtbaar zijn. Selecties blijven niet behouden na het herladen van de pagina."
+
 msgid "Show all columns"
 msgstr "Toon alle kolommen"
 
@@ -11798,6 +11804,9 @@ msgstr ""
 #, fuzzy
 msgid "Show value"
 msgstr "Toon Waarde"
+
+msgid "Show/hide columns"
+msgstr "Kolommen tonen/verbergen"
 
 msgid ""
 "Showcases a single metric front-and-center. Big number is best used to "
