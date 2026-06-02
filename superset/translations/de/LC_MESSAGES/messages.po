@@ -314,9 +314,9 @@ msgstr "%s ausgewählt (physisch)"
 msgid "%s Selected (Virtual)"
 msgstr "%s ausgewählt (virtuell)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s URL"
-msgstr "URL"
+msgstr "%s URL"
 
 #, python-format
 msgid "%s aggregates(s)"
@@ -356,13 +356,13 @@ msgstr "%s Option(en)"
 msgid "%s recipients"
 msgstr "%s Empfänger"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s record"
 msgid_plural "%s records..."
-msgstr[0] "%s Fehler"
-msgstr[1] ""
+msgstr[0] "%s Eintrag"
+msgstr[1] "%s Einträge..."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s row"
 msgid_plural "%s rows"
 msgstr[0] "%s Zeile"
@@ -12030,11 +12030,9 @@ msgstr "Durchgezogen"
 msgid "Some roles do not exist"
 msgstr "Einige Rollen sind nicht vorhanden"
 
-#, fuzzy
 msgid "Something went wrong while saving the user info"
 msgstr ""
-"Entschuldigung, da ist etwas schief gelaufen. Bitte versuchen Sie es "
-"erneut."
+"Etwas ist schief gelaufen beim Einrichten der Nutzer-Information."
 
 msgid ""
 "Something went wrong with embedded authentication. Check the dev console "
