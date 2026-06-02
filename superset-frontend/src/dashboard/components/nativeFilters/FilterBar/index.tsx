@@ -62,8 +62,15 @@ import { logEvent } from 'src/logger/actions';
 import { LOG_ACTIONS_CHANGE_DASHBOARD_FILTER } from 'src/logger/LogUtils';
 import { FilterBarOrientation, RootState } from 'src/dashboard/types';
 import { UserWithPermissionsAndRoles } from 'src/types/bootstrapTypes';
+import { useChartIds } from 'src/dashboard/util/charts/useChartIds';
+import { useChartLayoutItems } from 'src/dashboard/util/useChartLayoutItems';
 import { isChartCustomization } from '../FiltersConfigModal/utils';
-import { checkIsApplyDisabled, getFiltersToApply } from './utils';
+import {
+  checkIsApplyDisabled,
+  getFiltersToApply,
+  useChartsVerboseMaps,
+} from './utils';
+import crossFiltersSelector from './CrossFilters/selectors';
 import { extractLabel } from '../selectors';
 import { FiltersBarProps } from './types';
 import {
@@ -178,8 +185,32 @@ const FilterBar: FC<FiltersBarProps> = ({
   const history = useHistory();
   const dataMaskApplied: DataMaskStateWithId = useAllAppliedDataMask();
 
+  // Active cross-filters are keyed by emitter chart id and live outside the
+  // native-filter dataMask, so they are tracked separately for "Clear all".
+  const rawDataMask = useSelector<RootState, DataMaskStateWithId>(
+    state => state.dataMask,
+  );
+  const chartIds = useChartIds();
+  const chartLayoutItems = useChartLayoutItems();
+  const verboseMaps = useChartsVerboseMaps();
+  const selectedCrossFilters = useMemo(
+    () =>
+      crossFiltersSelector({
+        dataMask: rawDataMask,
+        chartIds,
+        chartLayoutItems,
+        verboseMaps,
+      }),
+    [rawDataMask, chartIds, chartLayoutItems, verboseMaps],
+  );
+
   const [dataMaskSelected, setDataMaskSelected] =
     useImmer<DataMaskStateWithId>(dataMaskApplied);
+  // Cross-filter clears are staged on "Clear all" and flushed on "Apply" so
+  // they reload alongside native filters in a single coordinated pass.
+  const [pendingCrossFilterClears, setPendingCrossFilterClears] = useState<
+    number[]
+  >([]);
   const [pendingCustomizationDataMasks, setPendingCustomizationDataMasks] =
     useState<Record<string, DataMask>>(EMPTY_DATA_MASK_RECORD);
   const chartCustomizationValues = useChartCustomizationConfiguration();
@@ -442,6 +473,20 @@ const FilterBar: FC<FiltersBarProps> = ({
       }
     });
 
+    // Flush cross-filter clears staged by "Clear all". Guarded by a non-empty
+    // list so a regular apply never touches cross-filters.
+    if (pendingCrossFilterClears.length) {
+      pendingCrossFilterClears.forEach(chartId => {
+        dispatch(
+          updateDataMask(chartId, {
+            extraFormData: { filters: [] },
+            filterState: { value: null, selectedValues: null },
+          }),
+        );
+      });
+      setPendingCrossFilterClears([]);
+    }
+
     if (
       pendingCustomizationDataMasks &&
       Object.keys(pendingCustomizationDataMasks).length > 0
@@ -497,6 +542,7 @@ const FilterBar: FC<FiltersBarProps> = ({
     pendingCustomizationDataMasks,
     hasClearedChartCustomizations,
     chartCustomizationValues,
+    pendingCrossFilterClears,
   ]);
 
   const handleClearAll = useCallback(() => {
@@ -557,6 +603,11 @@ const FilterBar: FC<FiltersBarProps> = ({
       setHasClearedChartCustomizations(true);
     }
 
+    // Stage active cross-filters; they are dispatched on the next "Apply".
+    if (selectedCrossFilters.length) {
+      setPendingCrossFilterClears(selectedCrossFilters.map(f => f.emitterId));
+    }
+
     setClearAllTriggers(newClearAllTriggers);
   }, [
     dataMaskSelected,
@@ -567,6 +618,7 @@ const FilterBar: FC<FiltersBarProps> = ({
     chartCustomizationValues,
     clearAllTriggers,
     dispatch,
+    selectedCrossFilters,
   ]);
 
   const handleClearAllComplete = useCallback((filterId: string) => {
@@ -607,7 +659,8 @@ const FilterBar: FC<FiltersBarProps> = ({
   const isApplyDisabled =
     (checkResult &&
       !hasPendingChartCustomizations &&
-      !hasClearedChartCustomizations) ||
+      !hasClearedChartCustomizations &&
+      pendingCrossFilterClears.length === 0) ||
     hasMissingRequiredChartCustomization;
 
   const isInitialized = useInitialization();
@@ -623,6 +676,7 @@ const FilterBar: FC<FiltersBarProps> = ({
         isApplyDisabled={isApplyDisabled}
         chartCustomizationItems={chartCustomizationValues}
         hasOutOfScopeRequiredFilters={hasOutOfScopeRequiredFilters}
+        hasCrossFilters={selectedCrossFilters.length > 0}
       />
     ),
     [
@@ -634,6 +688,7 @@ const FilterBar: FC<FiltersBarProps> = ({
       isApplyDisabled,
       chartCustomizationValues,
       hasOutOfScopeRequiredFilters,
+      selectedCrossFilters,
     ],
   );
 
