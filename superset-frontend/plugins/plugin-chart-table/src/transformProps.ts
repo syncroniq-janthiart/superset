@@ -526,12 +526,14 @@ const transformProps = (
     conditional_formatting: conditionalFormatting,
     allow_rearrange_columns: allowRearrangeColumns,
     allow_render_html: allowRenderHtml,
+    allow_column_selection: allowColumnSelection = false,
     time_compare,
     comparison_color_enabled: comparisonColorEnabled = false,
     comparison_color_scheme: comparisonColorScheme = ColorSchemeEnum.Green,
     comparison_type,
     slice_id,
   } = formData;
+
   // Build a mapping from column labels to original column names.
   // When a user creates an adhoc column with a custom label (e.g. sqlExpression: "state",
   // label: "State_Renamed"), the query result uses the label as the column name.
@@ -796,6 +798,7 @@ const transformProps = (
     columnColorFormatters,
     timeGrain,
     allowRearrangeColumns,
+    allowColumnSelection,
     allowRenderHtml,
     onContextMenu,
     isUsingTimeComparison,
