@@ -17367,3 +17367,6 @@ msgstr "Zoombereich"
 
 msgid "© Layer attribution"
 msgstr ""
+
+msgid "Some required filters on other tabs have values and will not be cleared"
+msgstr "Einige erforderliche Filter auf anderen Tabs werden nicht gelöscht."
