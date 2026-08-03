@@ -3103,7 +3103,7 @@ msgid "Clear Sort"
 msgstr "Formular zurücksetzen"
 
 msgid "Clear all"
-msgstr "Alles löschen"
+msgstr "Alles zurücksetzen"
 
 msgid "Clear all data"
 msgstr "Alle Daten leeren"
